@@ -8,7 +8,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/events")
 
-public class EventController{
+public class EventController {
 
     @Autowired
     private EventService eventService;
@@ -37,11 +37,5 @@ public class EventController{
     @GetMapping("/{id}/attendees")
     public List<Attendee> getAttendees(@PathVariable Long id) {
         return eventService.getAttendeesByEvent(id);
-    }
-
-    @DeleteMapping("/attendees/{id}")
-    public String cancelRegistration(@PathVariable Long id) {
-        eventService.cancelRegistration(id);
-        return "Registration cancelled";
     }
 }
