@@ -1,3 +1,9 @@
+/**
+ * Service layer for Event Management.
+ * Handles business logic for event creation,
+ * attendee registration, and capacity control.
+ */
+
 package com.archanaa.event_management;
 
 import com.archanaa.event_management.exception.EventFullException;
