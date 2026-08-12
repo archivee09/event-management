@@ -38,4 +38,9 @@ public class EventController {
     public List<Attendee> getAttendees(@PathVariable Long id) {
         return eventService.getAttendeesByEvent(id);
     }
+
+    @GetMapping("/health")
+    public String health() {
+         return "Event Management API is running";
+    }
 }
