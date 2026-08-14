@@ -25,7 +25,8 @@ public class EventService{
     public List<Event> getAllEvents(){
         return eventRepository.findAll();
     }
-
+    
+    // Check if the event exists
     public Event getEventById(Long id){
             return eventRepository.findById(id)
                     .orElseThrow(()-> new ResourceNotFoundException("Event not found with id "+id));
@@ -38,14 +39,17 @@ public class EventService{
     public Attendee registerAttendee(Long eventId, Attendee attendee){
         Event event=eventRepository.findById(eventId)
                 .orElseThrow(()-> new ResourceNotFoundException("Event Not found with id"+ eventId));
-
+        
+        // Event is already full
         if(event.getRegisteredCount() >= event.getMaxCapacity()){
             throw new EventFullException("Event is full");
         }
 
+           // Increase the registered count
             event.setRegisteredCount(event.getRegisteredCount()+1);
             eventRepository.save(event);
 
+        // Store the event ID for this attendee
         attendee.setEventId(eventId);
 
         return attendeeRepository.save(attendee);
